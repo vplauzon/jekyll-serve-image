@@ -11,8 +11,8 @@ url=$GIT_URL
 branch=$GIT_BRANCH
 
 echo
-echo "Repo Url:  $(url)"
-echo "Branch:  $(branch)"
+echo "Repo Url:  $url"
+echo "Branch:  $branch"
 
 echo
 echo "pwd:  $(pwd)"
@@ -20,7 +20,7 @@ echo "pwd:  $(pwd)"
 echo
 echo "Clone repo"
 
-git clone -b $branch $url
+git clone -b $branch $url .
 
 echo
 echo "ls -l"
