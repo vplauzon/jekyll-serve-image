@@ -12,4 +12,4 @@ ENV GIT_URL "no-url-set"
 ENV GIT_BRANCH "master"
 
 #	Run startup script
-CMD ["sh", "/scripts/startup.sh", "$(GIT_URL)", "$(GIT_BRANCH)"]
+CMD ["sh", "/scripts/startup.sh"]

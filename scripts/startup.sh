@@ -3,12 +3,12 @@
 ##########################################################################
 ##  Startup container
 ##
-##  Inputs:
+##  Environment variables:
 ##      GIT_URL:        URL to clone git repo
 ##      GIT_BRANCH:     Branch of the repo to clone
 
-url=$1
-branch=$2
+url=$GIT_URL
+branch=$GIT_BRANCH
 
 echo
 echo "Repo Url:  $(url)"
