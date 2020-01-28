@@ -8,7 +8,7 @@ COPY scripts /scripts
 EXPOSE 80
 
 #	Define environment variables
-ENV GIT_URL ""
+ENV GIT_URL "no-url-set"
 ENV GIT_BRANCH "master"
 
 #	Run startup script

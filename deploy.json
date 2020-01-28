@@ -1,0 +1,80 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "gitUrl": {
+            "type": "string",
+            "metadata": {
+                "description": "Url to clone the git repo"
+            }
+        },
+        "gitBranch": {
+            "type": "string",
+            "defaultValue": "master",
+            "metadata": {
+                "description": "Name of the branch to clone"
+            }
+        },
+        "imageTag": {
+            "type": "string",
+            "defaultValue": "1.800",
+            "metadata": {
+                "description": "Override the image tag of vplauzon/jekyll-serve"
+            }
+        }
+    },
+    "variables": {
+        "Container Group Name": "jekyll-serve",
+        "Full Image Name": "[concat('vplauzon/jekyll-serve:', parameters('imageTag'))]"
+    },
+    "resources": [
+        {
+            "name": "[variables('Container Group Name')]",
+            "type": "Microsoft.ContainerInstance/containerGroups",
+            "apiVersion": "2018-10-01",
+            "location": "[resourceGroup().location]",
+            "dependsOn": [
+            ],
+            "properties": {
+                "containers": [
+                    {
+                        "name": "web-server",
+                        "properties": {
+                            "image": "[variables('Full Image Name')]",
+                            "ports": [
+                                {
+                                    "port": 80,
+                                    "protocol": "Tcp"
+                                }
+                            ],
+                            "resources": {
+                                "requests": {
+                                    "cpu": 1,
+                                    "memoryInGB": 1
+                                }
+                            },
+                            "environmentVariables": [
+                                {
+                                    "name": "GIT_URL",
+                                    "value": "[parameters('gitUrl')]"
+                                },
+                                {
+                                    "name": "GIT_BRANCH",
+                                    "value": "[parameters('gitBranch')]"
+                                }
+                            ]
+                        }
+                    }
+                ],
+                "osType": "Linux",
+                "restartPolicy": "Always"
+            }
+        }
+    ],
+    "outputs": {
+        "containerIPv4Address": {
+            "type": "string",
+            "value": "[reference(resourceId('Microsoft.ContainerInstance/containerGroups/', variables('Container Group Name'))).ipAddress.ip]"
+        }
+    }
+}

@@ -9,7 +9,7 @@ resources:
 - repo: self
 
 variables:
-  tag: '$(Build.BuildId)'
+  tag: '0.$(Build.BuildId)'
   image-name:  vplauzon/jekyll-serve
   docker-registry-endpoint:  'vplauzon-docker-hub'
 
