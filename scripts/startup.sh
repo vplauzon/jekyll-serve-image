@@ -22,4 +22,12 @@ echo "Clone repo"
 
 git clone -b $branch $url
 
+echo
+echo "ls -l"
+
+ls -l
+
+echo
+echo "jekyll serve"
+
 jekyll serve --host=0.0.0.0 --port 80
