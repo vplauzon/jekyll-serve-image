@@ -15,6 +15,12 @@
                 "description": "Name of the branch to clone"
             }
         },
+        "dnsNameLabel": {
+            "type": "string",
+            "metadata": {
+                "description": "DNS Name Label"
+            }
+        },
         "imageTag": {
             "type": "string",
             "defaultValue": "0.801",
@@ -67,7 +73,17 @@
                     }
                 ],
                 "osType": "Linux",
-                "restartPolicy": "Always"
+                "restartPolicy": "Always",
+                "ipAddress": {
+                    "ports": [
+                        {
+                            "port": 80,
+                            "protocol": "Tcp"
+                        }
+                    ],
+                    "type": "Public",
+                    "dnsNameLabel":"[parameters('dnsNameLabel')]"
+                }
             }
         }
     ],
