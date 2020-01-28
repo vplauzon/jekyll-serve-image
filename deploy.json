@@ -72,9 +72,5 @@
         }
     ],
     "outputs": {
-        "containerIPv4Address": {
-            "type": "string",
-            "value": "[reference(resourceId('Microsoft.ContainerInstance/containerGroups/', variables('Container Group Name')), 'Full').ipAddress.ip]"
-        }
     }
 }
