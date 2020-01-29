@@ -38,7 +38,7 @@ stages:
 - stage: Dev
   displayName: Dev
   jobs:
-    - deployment:  deploy dev tag
+    - deployment:  tag
       displayName: Tag latest version
       pool:
         vmImage: 'ubuntu-latest'
@@ -57,4 +57,4 @@ stages:
               inputs:
                 targetType: 'filePath'
                 filePath: pull-tag-push.sh
-                arguments: $(image-name) $(tag) $(mainVersion)
+                arguments: $(image-name) $(tag) experimental
