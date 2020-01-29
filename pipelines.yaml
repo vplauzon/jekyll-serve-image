@@ -37,6 +37,7 @@ stages:
         tags: '$(tag)'
 - stage: Dev
   displayName: Dev
+  dependsOn:  Build
   jobs:
     - deployment:  tag
       displayName: Tag latest version
