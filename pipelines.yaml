@@ -35,8 +35,13 @@ stages:
         repository: '$(image-name)'
         command: 'push'
         tags: '$(tag)'
-- stage: Dev
-  displayName: Dev
+    - task: PublishBuildArtifacts@1
+      displayName: "Publish artifact:  scripts"
+      inputs:
+        PathtoPublish: scripts
+        ArtifactName: scripts
+- stage: Experimental
+  displayName: Experimental
   dependsOn:  Build
   jobs:
     - deployment:  tag
@@ -48,6 +53,9 @@ stages:
         runOnce:
           deploy:
             steps:
+            - download: current
+              displayName:  Download scripts
+              artifact: scripts
             - task: Docker@2
               displayName: Login to Docker Hub
               inputs:
@@ -57,5 +65,5 @@ stages:
               displayName: Pull, tag & push
               inputs:
                 targetType: 'filePath'
-                filePath: pull-tag-push.sh
+                filePath: $(Pipeline.Workspace)/scripts/pull-tag-push.sh
                 arguments: $(image-name) $(tag) experimental
