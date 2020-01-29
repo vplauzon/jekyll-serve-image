@@ -43,22 +43,14 @@ stages:
     pool:
       vmImage: 'ubuntu-latest'
     steps:
-    - task: Docker@0
-      displayName: Pull image
-      inputs:
-        customCommand:  'pull $(image-name):$(tag)'
-        dockerRegistryConnection: '$(docker-registry-endpoint)'
-        containerregistrytype: 'Container Registry'
-    - task: Docker@0
-      displayName: Tag image
-      inputs:
-        customCommand:  'tag $(image-name):$(tag) $(image-name):$(mainVersion)'
-        dockerRegistryConnection: '$(docker-registry-endpoint)'
-        containerregistrytype: 'Container Registry'
     - task: Docker@2
-      displayName: Push image
+      displayName: Login to Docker Hub
       inputs:
+        command: login
         containerRegistry: '$(docker-registry-endpoint)'
-        repository: '$(image-name)'
-        command: 'push'
-        tags: '$(mainVersion)'
+    - task: Bash@3
+      displayName: Pull, tag & push
+      inputs:
+        targetType: 'filePath'
+        filePath: pull-tag-push.sh
+        arguments: $(image-name) $(tag) $(mainVersion)
