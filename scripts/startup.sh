@@ -30,4 +30,4 @@ ls -l
 echo
 echo "jekyll serve"
 
-jekyll serve --host=0.0.0.0 --port 80
+jekyll serve --host 0.0.0.0 --port 80
