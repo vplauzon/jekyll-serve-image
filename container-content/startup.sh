@@ -21,6 +21,7 @@ echo
 echo "Clone repo"
 
 git clone -b $branch $url .
+/scripts/git-pull-loop.sh &
 
 echo
 echo "ls -l"

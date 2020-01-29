@@ -2,10 +2,7 @@
 FROM jekyll/builder:3.8 AS final
 
 #	Copy package
-COPY scripts /scripts
-
-# Make port 80 available to the world outside this container
-EXPOSE 80
+COPY container-content /scripts
 
 #	Define environment variables
 ENV GIT_URL "no-url-set"

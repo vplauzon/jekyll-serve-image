@@ -1,6 +1,4 @@
-# Docker
-# Build a Docker image 
-# https://docs.microsoft.com/azure/devops/pipelines/languages/docker
+# Help:  https://aka.ms/yaml
 
 trigger:
 - master
@@ -9,7 +7,8 @@ resources:
 - repo: self
 
 variables:
-  tag: '0.$(Build.BuildId)'
+  mainVersion: '0'
+  tag: '$(mainVersion).$(Build.BuildId)'
   image-name:  vplauzon/jekyll-serve
   docker-registry-endpoint:  'vplauzon-docker-hub'
 
@@ -36,3 +35,31 @@ stages:
         repository: '$(image-name)'
         command: 'push'
         tags: '$(tag)'
+- stage: Release
+  displayName: Release
+  jobs:  
+  - job: Build
+    displayName: Build
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+    - task: Docker@2
+      displayName: Pull image
+      inputs:
+        containerRegistry: '$(docker-registry-endpoint)'
+        repository: '$(image-name)'
+        command: 'push'
+        tags: '$(tag)'
+    - task: Docker@2
+      displayName: Tag image
+      inputs:
+        containerRegistry: '$(docker-registry-endpoint)'
+        repository: '$(image-name)'
+        customCommand: 'tag $(image-name):$(tag) $(image-name):$(mainVersion)'
+    - task: Docker@2
+      displayName: Push image
+      inputs:
+        containerRegistry: '$(docker-registry-endpoint)'
+        repository: '$(image-name)'
+        command: 'push'
+        tags: '$(mainVersion)'
