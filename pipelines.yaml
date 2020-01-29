@@ -38,8 +38,8 @@ stages:
 - stage: Release
   displayName: Release
   jobs:  
-  - job: Build
-    displayName: Build
+  - job: Tag
+    displayName: Tag latest version
     pool:
       vmImage: 'ubuntu-latest'
     steps:
@@ -48,7 +48,7 @@ stages:
       inputs:
         containerRegistry: '$(docker-registry-endpoint)'
         repository: '$(image-name)'
-        command: 'push'
+        command: 'pull'
         tags: '$(tag)'
     - task: Docker@2
       displayName: Tag image
