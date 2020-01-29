@@ -48,8 +48,7 @@ stages:
       inputs:
         containerRegistry: '$(docker-registry-endpoint)'
         repository: '$(image-name)'
-        command: 'pull'
-        tags: '$(tag)'
+        customCommand: 'pull $(image-name):$(tag)'
     - task: Docker@2
       displayName: Tag image
       inputs:
