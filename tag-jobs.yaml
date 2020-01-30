@@ -1,4 +1,5 @@
-parameters: []
+parameters:
+  environment:  ''
 jobs:
   - deployment:  tag
     displayName: Tag latest version
