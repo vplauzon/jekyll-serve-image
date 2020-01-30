@@ -22,11 +22,11 @@ stages:
       vmImage: 'ubuntu-latest'
     steps:
     - task: Bash@3
-      displayName: Pull, tag & push
+      displayName: Create Version File
       inputs:
         targetType: 'filePath'
-        filePath: $(Pipeline.Workspace)/scripts/create-version-file.sh
-        arguments: $(tag) $(Pipeline.Workspace)/container-content/version.txt
+        filePath: scripts/create-version-file.sh
+        arguments: $(tag) container-content/version.txt
     - task: Docker@2
       displayName: Build image
       inputs:
