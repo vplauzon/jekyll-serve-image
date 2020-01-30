@@ -15,7 +15,7 @@ targetTag=$3
 echo
 echo "Image name:  $image"
 echo "Full tag:  $fullTag"
-echo "Major tag:  $targetTag"
+echo "Target tag:  $targetTag"
 
 echo
 echo "Pull"

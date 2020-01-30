@@ -6,7 +6,7 @@ jobs:
     displayName: Tag latest version
     pool:
       vmImage: 'ubuntu-latest'
-    environment:  'dev'
+    environment:  ${{ parameters.environment }}
     strategy:
       runOnce:
         deploy:
@@ -24,4 +24,4 @@ jobs:
             inputs:
               targetType: 'filePath'
               filePath: $(Pipeline.Workspace)/scripts/pull-tag-push.sh
-              arguments: $(image-name) $(tag) $(targetVersion)
+              arguments: $(image-name) $(tag) ${{ parameters.targetVersion }}
