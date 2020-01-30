@@ -35,17 +35,17 @@ stages:
         repository: '$(image-name)'
         command: 'push'
         tags: '$(tag)'
+    - task: Bash@3
+      displayName: Pull, tag & push
+      inputs:
+        targetType: 'filePath'
+        filePath: pull-tag-push.sh
+        arguments: $(image-name) $(tag) experimental
     - task: PublishBuildArtifacts@1
       displayName: "Publish artifact:  scripts"
       inputs:
         PathtoPublish: scripts
         ArtifactName: scripts
-    - task: Bash@3
-      displayName: Pull, tag & push
-      inputs:
-        targetType: 'filePath'
-        filePath: $(Pipeline.Workspace)/scripts/pull-tag-push.sh
-        arguments: $(image-name) $(tag) experimental
 - stage: Production
   displayName: Production
   dependsOn:  Build
