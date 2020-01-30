@@ -44,11 +44,11 @@ stages:
   displayName: Experimental
   dependsOn:  Build
   jobs:
-    - deployment:  tag
+    - job:  tag
       displayName: Tag latest version
-      environment:  'dev'
       pool:
         vmImage: 'ubuntu-latest'
+      environment:  'dev'
       steps:
       - download: current
         displayName:  Download scripts
