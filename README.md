@@ -6,6 +6,12 @@ Docker Image for serving a Jekyll site from git.
 
 Leverages [jekyll/builder](https://hub.docker.com/r/jekyll/builder) image.
 
+# Docker Hub
+
+The image is available on [Docker Hub](https://hub.docker.com/r/vplauzon/jekyll-serve).
+
+Versions...
+
 ## Run in Azure
 
 Deploy as an Azure Container Instance:
