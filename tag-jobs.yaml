@@ -1,0 +1,25 @@
+parameters: []
+jobs:
+  - deployment:  tag
+    displayName: Tag latest version
+    pool:
+      vmImage: 'ubuntu-latest'
+    environment:  'dev'
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - download: current
+            displayName:  Download scripts
+            artifact: scripts
+          - task: Docker@2
+            displayName: Login to Docker Hub
+            inputs:
+              command: login
+              containerRegistry: '$(docker-registry-endpoint)'
+          - task: Bash@3
+            displayName: Pull, tag & push
+            inputs:
+              targetType: 'filePath'
+              filePath: $(Pipeline.Workspace)/scripts/pull-tag-push.sh
+              arguments: $(image-name) $(tag) experimental
