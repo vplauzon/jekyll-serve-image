@@ -40,14 +40,12 @@ stages:
       inputs:
         PathtoPublish: scripts
         ArtifactName: scripts
-- stage: Experimental
-  displayName: Experimental
-  dependsOn:  Build
-  jobs:
-    - template: tag-jobs.yaml
-      parameters:
-        environment:  experimental
-        targetVersion:  experimental
+    - task: Bash@3
+      displayName: Pull, tag & push
+      inputs:
+        targetType: 'filePath'
+        filePath: $(Pipeline.Workspace)/scripts/pull-tag-push.sh
+        arguments: $(image-name) $(tag) experimental
 - stage: Production
   displayName: Production
   dependsOn:  Experimental
