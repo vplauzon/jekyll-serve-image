@@ -15,6 +15,9 @@ echo "Repo Url:  $url"
 echo "Branch:  $branch"
 
 echo
+echo "Container version:  " + $(cat /scripts/version.txt)
+
+echo
 echo "pwd:  $(pwd)"
 
 echo

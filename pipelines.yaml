@@ -15,7 +15,13 @@ variables:
 stages:
 - stage: Build
   displayName: Build image
-  jobs:  
+  jobs:
+  - task: Bash@3
+    displayName: Pull, tag & push
+    inputs:
+      targetType: 'filePath'
+      filePath: $(Pipeline.Workspace)/scripts/create-version-file.sh
+      arguments: $(tag) $(Pipeline.Workspace)/container-content/version.txt
   - job: Build
     displayName: Build
     pool:
