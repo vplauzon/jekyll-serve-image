@@ -6,16 +6,16 @@
 ##  Inputs:
 ##      image:      Image name
 ##      fullTag:    Tag with minor version
-##      majorTag:   Tag with major version only
+##      targetTag:  Target tag
 
 image=$1
 fullTag=$2
-majorTag=$3
+targetTag=$3
 
 echo
 echo "Image name:  $image"
 echo "Full tag:  $fullTag"
-echo "Major tag:  $majorTag"
+echo "Major tag:  $targetTag"
 
 echo
 echo "Pull"
@@ -25,9 +25,9 @@ docker pull "$image:$fullTag"
 echo
 echo "Tag"
 
-docker tag "$image:$fullTag" "$image:$majorTag"
+docker tag "$image:$fullTag" "$image:$targetTag"
 
 echo
 echo "Push"
 
-docker push "$image:$majorTag"
+docker push "$image:$targetTag"

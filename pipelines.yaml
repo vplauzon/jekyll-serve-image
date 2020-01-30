@@ -7,7 +7,7 @@ resources:
 - repo: self
 
 variables:
-  mainVersion: '0'
+  mainVersion: '0.1'
   tag: '$(mainVersion).$(Build.BuildId)'
   image-name:  vplauzon/jekyll-serve
   docker-registry-endpoint:  'vplauzon-docker-hub'
@@ -47,3 +47,12 @@ stages:
     - template: tag-jobs.yaml
       parameters:
         environment:  experimental
+        targetVersion:  experimental
+- stage: Production
+  displayName: Production
+  dependsOn:  Experimental
+  jobs:
+    - template: tag-jobs.yaml
+      parameters:
+        environment:  production
+        targetVersion:  $(mainVersion)

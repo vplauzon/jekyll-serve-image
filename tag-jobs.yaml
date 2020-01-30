@@ -1,5 +1,6 @@
 parameters:
   environment:  ''
+  targetVersion:  ''
 jobs:
   - deployment:  tag
     displayName: Tag latest version
@@ -23,4 +24,4 @@ jobs:
             inputs:
               targetType: 'filePath'
               filePath: $(Pipeline.Workspace)/scripts/pull-tag-push.sh
-              arguments: $(image-name) $(tag) experimental
+              arguments: $(image-name) $(tag) $(targetVersion)
