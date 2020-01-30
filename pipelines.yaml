@@ -7,7 +7,7 @@ resources:
 - repo: self
 
 variables:
-  mainVersion: '0.1'
+  mainVersion: '1.0'
   tag: '$(mainVersion).$(Build.BuildId)'
   image-name:  vplauzon/jekyll-serve
   docker-registry-endpoint:  'vplauzon-docker-hub'
@@ -16,17 +16,17 @@ stages:
 - stage: Build
   displayName: Build image
   jobs:
-  - task: Bash@3
-    displayName: Pull, tag & push
-    inputs:
-      targetType: 'filePath'
-      filePath: $(Pipeline.Workspace)/scripts/create-version-file.sh
-      arguments: $(tag) $(Pipeline.Workspace)/container-content/version.txt
   - job: Build
     displayName: Build
     pool:
       vmImage: 'ubuntu-latest'
     steps:
+    - task: Bash@3
+      displayName: Pull, tag & push
+      inputs:
+        targetType: 'filePath'
+        filePath: $(Pipeline.Workspace)/scripts/create-version-file.sh
+        arguments: $(tag) $(Pipeline.Workspace)/container-content/version.txt
     - task: Docker@2
       displayName: Build image
       inputs:
