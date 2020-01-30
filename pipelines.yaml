@@ -39,7 +39,7 @@ stages:
       displayName: Pull, tag & push
       inputs:
         targetType: 'filePath'
-        filePath: pull-tag-push.sh
+        filePath: scripts/pull-tag-push.sh
         arguments: $(image-name) $(tag) experimental
     - task: PublishBuildArtifacts@1
       displayName: "Publish artifact:  scripts"
