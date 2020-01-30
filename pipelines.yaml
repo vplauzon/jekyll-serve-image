@@ -48,7 +48,7 @@ stages:
         arguments: $(image-name) $(tag) experimental
 - stage: Production
   displayName: Production
-  dependsOn:  Experimental
+  dependsOn:  Build
   jobs:
     - template: tag-jobs.yaml
       parameters:
