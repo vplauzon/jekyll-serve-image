@@ -24,6 +24,10 @@ echo
 echo "Clone repo"
 
 git clone -b $branch $url .
+
+echo
+echo "Start git-pull-loop daemon"
+
 /scripts/git-pull-loop.sh &
 
 echo
