@@ -28,6 +28,7 @@ git clone -b $branch $url .
 echo
 echo "Start git-pull-loop daemon"
 
+chmod +x /scripts/git-pull-loop.sh
 /scripts/git-pull-loop.sh &
 
 echo
