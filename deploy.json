@@ -23,7 +23,7 @@
         },
         "imageTag": {
             "type": "string",
-            "defaultValue": "0.801",
+            "defaultValue": "1.0",
             "metadata": {
                 "description": "Override the image tag of vplauzon/jekyll-serve"
             }

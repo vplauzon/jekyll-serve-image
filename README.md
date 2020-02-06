@@ -30,3 +30,7 @@ This template has the following parameters:
 
 Parameter|Description
 ---|---
+gitUrl|Url to clone the repo (ends with .git)
+gitBranch|Branch to clone
+dnsNameLabel|DNS Name Label to use with ACI ; the URL to access the site will be `http://<DNS Name Label>.<Azure Region>.azurecontainer.io:4000/`
+imageTag|Optional.  To enforce an image tag for the container.  Default to the last "production ready" version.
