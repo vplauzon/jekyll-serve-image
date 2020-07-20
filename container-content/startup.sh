@@ -39,4 +39,4 @@ ls -l
 echo
 echo "jekyll serve"
 
-jekyll serve
+jekyll serve --incremental
