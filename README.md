@@ -14,10 +14,10 @@ A great way to use this container is with [Azure Container Instance](https://doc
 
 The image is available on [Docker Hub](https://hub.docker.com/r/vplauzon/jekyll-serve).
 
-Current version is 0.1:
+Current version is 1.0:
 
 ```bash
-docker pull vplauzon/jekyll-serve:0.1
+docker pull vplauzon/jekyll-serve:1.0
 ```
 
 ## Run in Azure
