@@ -1,5 +1,5 @@
-﻿#	Use a Microsoft image with .NET core runtime (https://hub.docker.com/r/microsoft/dotnet/tags/)
-FROM jekyll/builder:4.0 AS final
+#	Use official Jekyll builder image (cf https://hub.docker.com/r/jekyll/builder)
+FROM jekyll/builder:4.2.0 AS final
 
 #	Copy package
 COPY container-content /scripts
